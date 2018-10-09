@@ -1,0 +1,22 @@
+{% extends 'master.html' %}
+
+{% load utility %}
+{% load static %}
+
+{% block page_title %}
+List View
+{% endblock %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'products/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<div class="product__list">
+    {% for item in results %}
+
+    {% include 'products/componets/product.html' with product=item %}
+
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>
+        {% block page_title %}
+        {% endblock %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'server/style.css' %}">
+    {% block page_styles %}
+    {% endblock %}
+</head>
+<body>
+    <h2>{{ user }}</h2>
+    {% block page_content %}
+    {% endblock %}
+</body>
+</html>

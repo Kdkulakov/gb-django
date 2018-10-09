@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+
+{% load static %}
+
+{% block page_title %}
+List View
+{% endblock %}
+
+{% block page_styles %}
+<link rel="stylesheet" href="{% static 'products/style.css' %}">
+{% endblock %}
+
+{% block page_content %}
+
+<h1>{{ instance }}</h1>
+
+{% endblock %}
