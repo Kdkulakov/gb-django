@@ -11,7 +11,7 @@
             {{ product.cost }}
         </span>
 
-        <a class="product__link" href="{% url 'products:detail' title=product.title %}"></a>
+        <a class="product__link" href="{% url 'products:detail' pk=product.id %}"></a>
 
     </div>
 </div>

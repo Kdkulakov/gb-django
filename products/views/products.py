@@ -16,6 +16,16 @@ from django.views import View
 from django.views.generic import (FormView, CreateView, UpdateView, DeleteView, DetailView, ListView)
 
 
+class ProductList(ListView):
+    model = Product
+    template_name = 'products/list.html'
+    context_object_name = 'results'
+
+class ProductDetail(DetailView):
+    model = Product
+    template_name = 'products/detail.html'
+    context_object_name = 'instance'
+
 class ProductGenericCreate(CreateView):
     model = Product
     form_class = ProductModelForm
@@ -29,7 +39,10 @@ class ProductGenericUpdate(UpdateView):
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:list')
 
-
+class ProductDelete(DeleteView):
+    model = Product
+    success_url = reverse_lazy('products:list')
+    template_name = 'products/delete.html'
 
 class ProductCreate(View):
     def get(self, request):
