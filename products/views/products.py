@@ -25,6 +25,12 @@ class ProductDetail(DetailView):
     model = Product
     template_name = 'products/detail.html'
     context_object_name = 'instance'
+    slug_field = 'title'
+
+    # def get_object(self, *args, **kwargs):
+    #     # get_object_or_404(self.model, pk=kwargs['pk'], title__startswith='S')
+    #     get_object_or_404(self.model, pk=kwargs['pk'], is_active=True)
+
 
 class ProductGenericCreate(CreateView):
     model = Product
@@ -38,11 +44,13 @@ class ProductGenericUpdate(UpdateView):
     form_class = ProductModelForm
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:list')
+    slug_field = 'title'
 
 class ProductDelete(DeleteView):
     model = Product
     success_url = reverse_lazy('products:list')
     template_name = 'products/delete.html'
+    slug_field = 'title'
 
 class ProductCreate(View):
     def get(self, request):

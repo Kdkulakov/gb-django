@@ -6,8 +6,8 @@ app_name = 'products'
 
 urlpatterns = [
     path('create/', ProductGenericCreate.as_view(), name='create'),
-    path('update/<int:pk>/', ProductGenericUpdate.as_view(), name='update'),
-    path('delete/<int:pk>/', ProductDelete.as_view(), name='delete'),
-    path('<int:pk>/', ProductDetail.as_view(), name='detail'),
+    path('update/<slug:slug>/', ProductGenericUpdate.as_view(), name='update'),
+    path('delete/<slug:slug>/', ProductDelete.as_view(), name='delete'),
+    path('<slug:slug>/', ProductDetail.as_view(), name='detail'),
     path('', ProductList.as_view(), name='list'),
 ]
