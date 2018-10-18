@@ -13,5 +13,8 @@ List View
 {% block page_content %}
 
 <h1>{{ instance }}</h1>
-
+    <a href="/">
+    <input type="submit" value="DELETE" class="btn btn-alert"></a>
 {% endblock %}
+
+{% url 'products:detail' pk=product.id %}

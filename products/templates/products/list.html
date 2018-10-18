@@ -9,14 +9,23 @@ List View
 
 {% block page_styles %}
 <link rel="stylesheet" href="{% static 'products/style.css' %}">
+
 {% endblock %}
 
 {% block page_content %}
-<div class="product__list">
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+        <a href="create/">
+        <input type="submit" class="btn btn-primary" name="create/" value="Добавить"></a>
+        </div>
+    </div>
+    <div class="row">
     {% for item in results %}
 
     {% include 'products/componets/product.html' with product=item %}
 
     {% endfor %}
+    </div>
 </div>
 {% endblock %}
