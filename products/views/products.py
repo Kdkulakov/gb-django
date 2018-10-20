@@ -13,7 +13,9 @@ from products.models import Product
 from products.forms import ProductModelForm
 
 from django.views import View
+
 from django.views.generic import (FormView, CreateView, UpdateView, DeleteView, DetailView, ListView)
+
 
 
 class ProductList(ListView):

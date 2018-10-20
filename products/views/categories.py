@@ -7,6 +7,10 @@ from django.urls import reverse_lazy
 from products.forms import CategoryModelForm
 
 
+def index(request):
+    return render(request, 'categories/list.html')
+
+
 class CategoryCreate(CreateView):
     model = Category
     form_class = CategoryModelForm

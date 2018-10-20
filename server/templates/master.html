@@ -17,8 +17,15 @@
     {% endblock %}
 </head>
 <body>
-    <h2>{{ user }}</h2>
+
+    <section>
+        <div class="container">
+            <h2 class="right:0; position:absolute;">{{ user }}</h2>
+            </div>
     {% block page_content %}
+    {% endblock %}
+    </section>
+    {% block page_js %}
     {% endblock %}
 </body>
 </html>

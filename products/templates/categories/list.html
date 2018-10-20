@@ -1,0 +1,28 @@
+{% extends 'master.html' %}
+
+{% load utility %}
+{% load static %}
+
+{% block page_title %}
+List View
+{% endblock %}
+
+{% block page_styles %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.0/axios.js"></script>
+<link rel="stylesheet" href="{% static 'products/style.css' %}">
+
+{% endblock %}
+
+{% block page_content %}
+<div class="products__list">
+
+</div>
+{% endblock %}
+
+{% block page_js %}
+<script type="text/javascript" src="{% static 'categories/products.js' %}"></script>
+<script>
+    axios.get('http://127.0.0.1:8000/api/products/')
+        .then(renderData)
+</script>
+{% endblock %}
