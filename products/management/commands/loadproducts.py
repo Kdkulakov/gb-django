@@ -13,7 +13,7 @@ class Command(BaseCommand):
             with open('data.json', 'r') as file:
 
                 for row in json.load(file):
-                    Product.objects.create(**row)
+                    Product.objects.get_or_create(**row)
 
 
         except Exception as err:

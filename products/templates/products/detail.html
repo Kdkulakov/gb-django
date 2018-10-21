@@ -11,10 +11,13 @@ List View
 {% endblock %}
 
 {% block page_content %}
-
+{{ snippet }}
 <h1>{{ instance }}</h1>
-    <a href="/">
-    <input type="submit" value="DELETE" class="btn btn-alert"></a>
+<p>Описание:</p>
+<p>{{ instance.snippet }}</p>
+<br />
+<p>{{ instance.cost }}</p>
+
 {% endblock %}
 
 {% url 'products:detail' pk=product.id %}

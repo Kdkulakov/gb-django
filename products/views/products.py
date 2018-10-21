@@ -16,6 +16,8 @@ from django.views import View
 
 from django.views.generic import (FormView, CreateView, UpdateView, DeleteView, DetailView, ListView)
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class ProductList(ListView):
@@ -34,25 +36,29 @@ class ProductDetail(DetailView):
     #     get_object_or_404(self.model, pk=kwargs['pk'], is_active=True)
 
 
-class ProductGenericCreate(CreateView):
+class ProductGenericCreate(LoginRequiredMixin, CreateView):
     model = Product
     form_class = ProductModelForm
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:list')
+    login_url = reverse_lazy('accounts:login')
 
 
-class ProductGenericUpdate(UpdateView):
+class ProductGenericUpdate(LoginRequiredMixin, UpdateView):
     model = Product
     form_class = ProductModelForm
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:list')
     slug_field = 'title'
+    login_url = reverse_lazy('accounts:login')
 
-class ProductDelete(DeleteView):
+
+class ProductGenericDelete(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy('products:list')
     template_name = 'products/delete.html'
     slug_field = 'title'
+    login_url = reverse_lazy('accounts:login')
 
 class ProductCreate(View):
     def get(self, request):
@@ -97,14 +103,14 @@ def product_list(request):
 
     return render(request, 'products/list.html', {'results': query})
 
+@login_required(login_url=reverse_lazy('accounts:login'))           #декоратор для ограничения доступы к вьюшке
+def product_detail(request, slug):
 
-def product_detail(request, title):
-
-    obj = get_object_or_404(Product, title=title)
+    obj = get_object_or_404(Product, title=slug)
 
     return render(request, 'products/detail.html', {'instance': obj})
 
-
+@login_required(login_url=reverse_lazy('accounts:login'))           #декоратор для ограничения доступы к вьюшке
 def product_create(request):
 
     success_url = reverse_lazy('products:list')
@@ -119,7 +125,7 @@ def product_create(request):
 
     return render(request, 'products/create.html', {'form': form})
 
-
+@login_required(login_url=reverse_lazy('accounts:login'))           #декоратор для ограничения доступы к вьюшке
 def product_update(request, title):
 
     success_url = reverse_lazy('products:list')

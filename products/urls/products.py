@@ -2,7 +2,7 @@ from django.urls import path
 
 from products.endpoint.products import product_list
 
-from products.views.products import (ProductGenericCreate, ProductGenericUpdate, ProductDetail, ProductList, ProductDelete)
+from products.views.products import (ProductGenericCreate, ProductGenericUpdate, ProductDetail, ProductList, ProductGenericDelete, product_detail)
 
 app_name = 'products'
 
@@ -13,7 +13,7 @@ endpointpatterns = [
 urlpatterns = [
     path('create/', ProductGenericCreate.as_view(), name='create'),
     path('update/<slug:slug>/', ProductGenericUpdate.as_view(), name='update'),
-    path('delete/<slug:slug>/', ProductDelete.as_view(), name='delete'),
+    path('delete/<slug:slug>/', ProductGenericDelete.as_view(), name='delete'),
     path('<slug:slug>/', ProductDetail.as_view(), name='detail'),
     path('', ProductList.as_view(), name='list'),
 ] + endpointpatterns

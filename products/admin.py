@@ -4,8 +4,9 @@ from django.utils.safestring import mark_safe
 from django.template.loader import render_to_string
 
 
-from . import models
+from products.models import Product, Category
 
+@admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = [
         'picture',
@@ -50,6 +51,31 @@ class ProductAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(models.Product, ProductAdmin)
+class ProductInline(admin.TabularInline):
+    model = Product
+    fk_name = 'category'
 
-admin.site.register(models.Category)
+#admin.site.register(models.Product, ProductAdmin)
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = [
+        'title',
+        'created',
+        'modified'
+    ]
+
+    list_filter = [
+        'created',
+        'modified'
+
+    ]
+
+    search_fields = [
+        'title',
+        'snippet'
+    ]
+
+    inlines = [
+        ProductInline           # выведение продуктов редактируемым списком в категории
+    ]
